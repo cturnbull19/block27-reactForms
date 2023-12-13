@@ -17,11 +17,12 @@ const [error, setError] = useState(null)
                 }
             })
             const result = await res.json();
+            console.log(result)
             console.log(result.message)
             setSuccessMessage(result.message);
             console.log(result.data.username)
             setUsername(result.data.username)
-            console.log(username.username)
+            console.log(username)
         } catch(e) {
             setError(e.message);
         }
@@ -33,7 +34,7 @@ const [error, setError] = useState(null)
         {successMessage && <p>{successMessage}</p>}
         {username && <p>{username}</p>}
         {error && <p>{error}</p>}
-        <button onClick={handleClick}>
+        <button onClick={() => {handleClick();}}>
         Authenticate Token
         </button>
         </>
