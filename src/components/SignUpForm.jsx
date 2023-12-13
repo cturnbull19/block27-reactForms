@@ -13,8 +13,22 @@ export default function SignUpForm({setToken}) {
         //Prevent refresh of page
         event.preventDefault()
 
+        //Validate form inputs
+        if (username.length !== 8){
+            setError('Username must be eight characters long');
+            return;
+        }
+
+        if (password.length < 6) {
+            setError('Password must be at least six characters long');
+            return;
+        }
+
+        setError(null);
+
         //Read the data from state
         console.log({username, password})
+
 
         try {
             const response = await fetch ("https://fsa-jwt-practice.herokuapp.com/signup",
@@ -59,7 +73,7 @@ export default function SignUpForm({setToken}) {
 
             <label>Password:{""}
                 <input
-                    type='text'
+                    type='password'
                     value={password}
                     onChange= {(event) => {
                         setPassword(event.target.value)
